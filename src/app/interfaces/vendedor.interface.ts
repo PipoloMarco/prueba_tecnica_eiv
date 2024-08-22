@@ -1,3 +1,5 @@
+import { Localidad } from './localidad.interface';
+
 export interface Vendedor {
   id: number;
   usuarioLogin: string;
@@ -6,10 +8,4 @@ export interface Vendedor {
   fechaNacimiento: Date;
   observaciones: null | string;
   localidad: Localidad;
-}
-
-export interface Localidad {
-  id: number;
-  localidad: string;
-  codigoPostal: string;
 }

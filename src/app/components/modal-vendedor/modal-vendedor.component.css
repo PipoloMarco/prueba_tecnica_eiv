@@ -1,0 +1,23 @@
+
+.modal{
+  margin-top: 40px;
+   width: 700px;
+   height: auto;
+   background: rgba(128, 128, 128, 0.506);
+   padding: 20px;
+   border-radius: 20px;
+   position: relative;
+}
+.form-vendedores {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  margin: 7px;
+}
+
+label {
+  margin: 7px;
+}
