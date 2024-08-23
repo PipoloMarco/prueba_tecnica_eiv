@@ -3,14 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { VendedoresService } from 'src/app/services/vendedores.service';
 
-const usuario: Vendedor = {
-  fechaNacimiento: new Date('2024-08-22'),
-  habilitado: true,
-  localidadId: 1,
-  nombre: 'maquito',
-  observaciones: 'hola',
-  usuarioLogin: 'maquito',
-};
 
 @Component({
   selector: 'app-modal-vendedor',

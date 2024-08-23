@@ -32,19 +32,14 @@
     </select>
 
     <label for="">Observaciones:</label>
-    <textarea name="" formControlName="observaciones"></textarea>
-
+    <textarea formControlName="observaciones"></textarea>
     <label for="">Habilitado:</label>
-
-    <label>
+    <div class="form-habilitado">
+      <label> True </label>
       <input type="radio" [value]="true" formControlName="habilitado" />
-      True
-    </label>
-
-    <label>
+      <label> False </label>
       <input formControlName="habilitado" type="radio" [value]="false" />
-      False
-    </label>
+    </div>
 
     <button type="submit">Guardar</button>
     <!-- <button>Cancelar</button>
@@ -52,7 +47,7 @@
     <button>Modificar</button> -->
   </form>
 </div>
-
+<!--
 <span>Valid</span>
 <pre>{{ formulario.valid | json }}</pre>
 <br />
@@ -63,4 +58,4 @@
 
 <span>Agregar Juego</span>
 <pre>{{ formulario.valid | json }}</pre>
-<pre>{{ formulario.value | json }}</pre>
+<pre>{{ formulario.value | json }}</pre> -->
