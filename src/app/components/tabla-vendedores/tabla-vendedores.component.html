@@ -2,7 +2,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Useario Login</th>
       <th>Nombre</th>
       <th>Habilitado</th>
@@ -15,13 +14,12 @@
   </thead>
   <tfoot *ngFor="let vendedor of vendedores">
     <tr>
-      <td>{{ vendedor.id }}</td>
       <td>{{ vendedor.usuarioLogin }}</td>
       <td>{{ vendedor.nombre }}</td>
       <td>{{ vendedor.habilitado }}</td>
       <td>{{ vendedor.fechaNacimiento }}</td>
       <td>{{ vendedor.observaciones }}</td>
-      <td>{{ vendedor.localidad.localidad }}</td>
+      <td>{{ vendedor.localidad?.localidad }}</td>
       <td><button>Modificar</button></td>
       <td><button>Eliminar</button></td>
     </tr>

@@ -16,8 +16,5 @@ export class TablaVendedoresComponent implements OnInit {
     this.vendedoresSvc
       .getVendedores()
       .subscribe((vendedors) => (this.vendedores = vendedors));
-    this.vendedoresSvc
-      .getLocalidades()
-      .subscribe((localidades) => (this.localidades = localidades));
   }
 }

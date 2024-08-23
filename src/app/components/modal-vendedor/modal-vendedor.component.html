@@ -1,34 +1,66 @@
 <div class="modal">
-  <form action="" class="form-vendedores">
+  <form
+    [formGroup]="formulario"
+    class="form-vendedores"
+    (ngSubmit)="onSubmit()"
+  >
     <img src="../../../favicon.ico" alt="" width="30px" />
-    <button>Subir Imagen</button>
-    <label for="">Nombre:</label>
-    <input type="text" placeholder="nombre" />
-    <label for="">Apellido:</label>
-    <input type="text" placeholder="apellido" />
+    <!-- <button (click)="uploadImage()" type="button">Subir Imagen</button>
+    <input
+      type="file"
+      #fileInput
+      (change)="onFileSelected($event)"
+      style="display: none"
+      accept="image/*"
+    /> -->
+    <label for="">Usuario Login</label>
+    <input type="text" placeholder="usuario" formControlName="usuarioLogin" />
+
+    <label for="">Nombre Completo</label>
+    <input type="text" placeholder="nombre" formControlName="nombre" />
+
     <label for="">Fecha Nacimiento:</label>
-    <input type="date" placeholder="fecha" />
+    <input type="date" placeholder="fecha" formControlName="fechaNacimiento" />
+
     <label for=""> Localidad:</label>
-    <select name="" id="">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
+
+    <select formControlName="localidadId">
+      <option disabled>** Localidad **</option>
+      <option value="1">Rosario</option>
+      <option value="2">Roldan</option>
+      <option value="3">Funes</option>
     </select>
+
     <label for="">Observaciones:</label>
-    <textarea name="" id=""></textarea>
+    <textarea name="" formControlName="observaciones"></textarea>
+
     <label for="">Habilitado:</label>
+
     <label>
-      <input type="radio" name="opcion" value="true" />
+      <input type="radio" [value]="true" formControlName="habilitado" />
       True
     </label>
+
     <label>
-      <input type="radio" name="opcion" value="false" />
+      <input formControlName="habilitado" type="radio" [value]="false" />
       False
     </label>
 
-    <button>Guardar</button>
-    <button>Cancelar</button>
+    <button type="submit">Guardar</button>
+    <!-- <button>Cancelar</button>
     <button>Eliminar</button>
-    <button>Modificar</button>
+    <button>Modificar</button> -->
   </form>
 </div>
+
+<span>Valid</span>
+<pre>{{ formulario.valid | json }}</pre>
+<br />
+
+<span>Value</span>
+<pre>{{ formulario.value | json }}</pre>
+<br />
+
+<span>Agregar Juego</span>
+<pre>{{ formulario.valid | json }}</pre>
+<pre>{{ formulario.value | json }}</pre>
