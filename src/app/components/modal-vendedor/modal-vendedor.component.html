@@ -4,15 +4,21 @@
     class="form-vendedores"
     (ngSubmit)="onSubmit()"
   >
-    <img src="../../../favicon.ico" alt="" width="30px" />
-    <!-- <button (click)="uploadImage()" type="button">Subir Imagen</button>
-    <input
-      type="file"
-      #fileInput
-      (change)="onFileSelected($event)"
-      style="display: none"
-      accept="image/*"
-    /> -->
+    <div class="form-profile">
+      <img [src]="imgSet" alt="" />
+
+      <button class="btn-subir-imagen" (click)="uploadImage()" type="button">
+        Subir Imagen
+      </button>
+      <input
+        type="file"
+        #fileInput
+        (change)="onFileSelected($event)"
+        style="display: none"
+        accept="image/*"
+      />
+    </div>
+
     <label for="">Usuario Login</label>
     <input type="text" placeholder="usuario" formControlName="usuarioLogin" />
 
@@ -26,18 +32,18 @@
 
     <select formControlName="localidadId">
       <option disabled>** Localidad **</option>
-      <option value="1">Rosario</option>
-      <option value="2">Roldan</option>
-      <option value="3">Funes</option>
+      <option *ngFor="let localidad of localidades" value="{{ localidad.id }}">
+        {{ localidad.localidad }}
+      </option>
     </select>
 
     <label for="">Observaciones:</label>
     <textarea formControlName="observaciones"></textarea>
     <label for="">Habilitado:</label>
     <div class="form-habilitado">
-      <label> True </label>
+      <label> Si: </label>
       <input type="radio" [value]="true" formControlName="habilitado" />
-      <label> False </label>
+      <label> No: </label>
       <input formControlName="habilitado" type="radio" [value]="false" />
     </div>
 

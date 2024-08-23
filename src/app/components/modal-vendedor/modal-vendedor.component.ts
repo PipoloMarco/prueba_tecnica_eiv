@@ -1,8 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Localidad } from 'src/app/interfaces/localidad.interface';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
+import { LocalidadesService } from 'src/app/services/localidades.service';
 import { VendedoresService } from 'src/app/services/vendedores.service';
-
 
 @Component({
   selector: 'app-modal-vendedor',
@@ -11,10 +12,15 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 })
 export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  public localidades: Localidad[] = [];
+  public imgSet: any = '';
+
   constructor(
     private form: FormBuilder,
-    private vendedorService: VendedoresService
+    private vendedorService: VendedoresService,
+    private localidadService: LocalidadesService
   ) {}
+
   public formulario = this.form.group({
     usuarioLogin: ['marquiito87', Validators.required],
     nombre: ['Marco', Validators.required],
@@ -23,7 +29,12 @@ export class ModalVendedorComponent implements OnInit {
     observaciones: ['Hola como andas'],
     habilitado: [false, Validators.requiredTrue],
   });
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.localidadService
+      .getLocalidades()
+      .subscribe((value) => (this.localidades = value));
+  }
 
   onSubmit() {
     if (this.formulario.invalid) {
@@ -35,25 +46,23 @@ export class ModalVendedorComponent implements OnInit {
     return this.vendedorService.postVendedor(vendedor).subscribe();
   }
 
-  // {
-  //   "fechaNacimiento": "2024-08-22",
-  //   "habilitado": true,
-  //   "localidadId": 1,
-  //   "nombre": "maquito",
-  //   "observaciones": "hola",
-  //   "usuarioLogin": "maquito"
-  // }
+  uploadImage() {
+    this.fileInput.nativeElement.click();
+  }
 
-  // uploadImage() {
-  //   this.fileInput.nativeElement.click();
-  // }
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      console.log('Imagen seleccionada:', file);
 
-  // onFileSelected(event: Event) {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     const file = input.files[0];
-  //     console.log('Imagen seleccionada:', file);
-  //     // Aquí puedes procesar el archivo seleccionado, por ejemplo, enviarlo a tu backend
-  //   }
-  // }
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imgSet = e.target.result;
+        this.vendedorService.postFotoVendedor(7, file).subscribe();
+      };
+
+      reader.readAsDataURL(file); // Leer la imagen como una URL
+    }
+  }
 }

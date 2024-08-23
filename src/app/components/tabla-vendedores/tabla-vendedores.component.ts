@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VendedoresService } from '../../services/vendedores.service';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
@@ -12,6 +12,9 @@ export class TablaVendedoresComponent implements OnInit {
   constructor(private vendedoresSvc: VendedoresService) {}
   public vendedores: Vendedor[] = [];
   public localidades: Localidad[] = [];
+  @Input()
+  public estadoModal = false;
+
   ngOnInit(): void {
     this.vendedoresSvc
       .getVendedores()

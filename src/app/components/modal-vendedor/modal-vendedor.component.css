@@ -3,11 +3,11 @@
   margin-top: 40px;
    width: 500px;
    height: auto;
-   background: rgba(128, 128, 128, 0.506);
+   background: rgb(255, 255, 255);
    padding: 20px;
-   border-radius: 20px;
+   border-radius: 10px;
    position: relative;
-}
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  }
 .form-vendedores {
   display: flex;
   flex-direction: column;
@@ -21,6 +21,7 @@ label {
   font-size: 15px;
   font-weight: 600;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(71, 71, 71) ;
 }
 
 input, textarea{
@@ -29,7 +30,9 @@ input, textarea{
   padding: 10px;
   border-radius:10px ;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border: none;
+  border: solid 1px  rgb(71, 71, 71);
+
+
 }
 select {
   width: 380px;
@@ -37,19 +40,17 @@ select {
   padding: 10px;
   border-radius:10px ;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border: solid 1px slategray;
-}
-
-option {
-  display: flex;
-  justify-content: center;
+  border: solid 1px  rgb(71, 71, 71);
 }
 
 
-button {
+
+
+button , btn-subir-imagen
+{
   padding: 15px;
   border: none;
-  background-color: rgba(0, 0, 255, 0.534);
+  background-color: #0075dc;
   border-radius: 5px;
   transition: all 0.3s;
   font-size: 15px;
@@ -60,12 +61,38 @@ button {
 }
 
 button:hover {
-  background-color: rgba(0, 0, 255, 0.339);
+  background-color: #0075dcb2;
 }
 .form-habilitado {
   margin-bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  width:25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   }
+
+
+.form-profile {
+  width: 75%;
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+
+}
+
+
+
+img {
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.btn-subir-imagen  {
+  padding: 10px;
+  margin-left: 20px;
+  align-self: center;
+  font-size: 13px;
+}
