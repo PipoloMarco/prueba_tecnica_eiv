@@ -1,13 +1,41 @@
 
-.modal{
-  margin-top: 40px;
-   width: 500px;
-   height: auto;
-   background: rgb(255, 255, 255);
-   padding: 20px;
-   border-radius: 10px;
-   position: relative;
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;  }
+.modal {
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: auto;
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 10px;
+  position: fixed;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards; /* Añade la animación aquí */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo con un color negro semi-transparente */
+  z-index: 999; /* Asegúrate de que esté debajo del modal */
+}
 .form-vendedores {
   display: flex;
   flex-direction: column;
@@ -96,3 +124,5 @@ img {
   align-self: center;
   font-size: 13px;
 }
+
+

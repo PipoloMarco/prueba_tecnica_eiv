@@ -12,12 +12,20 @@ export class TablaVendedoresComponent implements OnInit {
   constructor(private vendedoresSvc: VendedoresService) {}
   public vendedores: Vendedor[] = [];
   public localidades: Localidad[] = [];
-  @Input()
   public estadoModal = false;
 
   ngOnInit(): void {
     this.vendedoresSvc
       .getVendedores()
       .subscribe((vendedors) => (this.vendedores = vendedors));
+  }
+
+  abrirModal() {
+    this.estadoModal = !this.estadoModal;
+    console.log(this.estadoModal);
+  }
+
+  cerrarCloseModal() {
+    this.estadoModal = false;
   }
 }

@@ -1,4 +1,9 @@
-<button>Agregar</button>
+<button (click)="abrirModal()">Agregar</button>
+<div *ngIf="estadoModal">
+  <app-modal-vendedor
+    (closeModalEvent)="cerrarCloseModal()"
+  ></app-modal-vendedor>
+</div>
 <table class="table">
   <thead>
     <tr>

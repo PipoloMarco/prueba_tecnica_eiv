@@ -1,4 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
@@ -14,6 +22,7 @@ export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   public localidades: Localidad[] = [];
   public imgSet: any = '';
+  @Output() closeModalEvent = new EventEmitter<boolean>();
 
   constructor(
     private form: FormBuilder,
@@ -30,6 +39,9 @@ export class ModalVendedorComponent implements OnInit {
     habilitado: [false, Validators.requiredTrue],
   });
 
+  closeModal() {
+    this.closeModalEvent.emit(); // Emitir el evento
+  }
   ngOnInit(): void {
     this.localidadService
       .getLocalidades()
@@ -61,7 +73,6 @@ export class ModalVendedorComponent implements OnInit {
         this.imgSet = e.target.result;
         this.vendedorService.postFotoVendedor(7, file).subscribe();
       };
-
       reader.readAsDataURL(file); // Leer la imagen como una URL
     }
   }

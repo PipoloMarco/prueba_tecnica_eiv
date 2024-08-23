@@ -1,4 +1,6 @@
-<div class="modal">
+<div (click)="closeModal()" class="backdrop"></div>
+
+<div class="modal slide-in-bottom">
   <form
     [formGroup]="formulario"
     class="form-vendedores"
