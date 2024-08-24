@@ -22,7 +22,22 @@ export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   public localidades: Localidad[] = [];
   public imgSet: any = '';
-  @Output() closeModalEvent = new EventEmitter<boolean>();
+  @Output() cerrarModal = new EventEmitter<boolean>();
+  @Input() crearVendedor = true;
+  @Input() vendedor = {};
+
+  formulario = this.form.group({
+    usuarioLogin: ['', Validators.required],
+    nombre: ['', Validators.required],
+    fechaNacimiento: [new Date(), Validators.required],
+    localidadId: [1, Validators.required],
+    observaciones: [''],
+    habilitado: [false, Validators.requiredTrue],
+  });
+
+  public modalStatusFalse() {
+    this.cerrarModal.emit();
+  }
 
   constructor(
     private form: FormBuilder,
@@ -30,32 +45,32 @@ export class ModalVendedorComponent implements OnInit {
     private localidadService: LocalidadesService
   ) {}
 
-  public formulario = this.form.group({
-    usuarioLogin: ['marquiito87', Validators.required],
-    nombre: ['Marco', Validators.required],
-    fechaNacimiento: [new Date(), Validators.required],
-    localidadId: [1, Validators.required],
-    observaciones: ['Hola como andas'],
-    habilitado: [false, Validators.requiredTrue],
-  });
-
-  closeModal() {
-    this.closeModalEvent.emit(); // Emitir el evento
-  }
   ngOnInit(): void {
     this.localidadService
       .getLocalidades()
       .subscribe((value) => (this.localidades = value));
+    // Si crearVendedor = falso entonces traigo los datos del vendedor;
+    if (!this.crearVendedor) {
+      console.log(this.vendedor);
+
+      this.formulario.patchValue(this.vendedor);
+    }
   }
 
   onSubmit() {
+    // Si el formulario es invalido...
     if (this.formulario.invalid) {
       return console.log('formulario no es valido');
     }
-    const vendedor = this.formulario.value as Vendedor;
-    // return console.log(this.formulario.value);
-    console.log('creado');
-    return this.vendedorService.postVendedor(vendedor).subscribe();
+    // Si es el modal de modificacion entonces llamo al servicio para modificar el vendedor y retorno la funcion
+    if (!this.crearVendedor) {
+      const { id } = this.vendedor as Vendedor;
+      const vendedor = this.formulario.value as Vendedor;
+      return this.vendedorService.putVendedor(id!, vendedor).subscribe();
+    }
+    //Si no cumple las anterior condiciones creo el vendedor
+    const vendedorForm = this.formulario.value as Vendedor;
+    return this.vendedorService.postVendedor(vendedorForm).subscribe();
   }
 
   uploadImage() {
@@ -73,7 +88,7 @@ export class ModalVendedorComponent implements OnInit {
         this.imgSet = e.target.result;
         this.vendedorService.postFotoVendedor(7, file).subscribe();
       };
-      reader.readAsDataURL(file); // Leer la imagen como una URL
+      reader.readAsDataURL(file);
     }
   }
 }

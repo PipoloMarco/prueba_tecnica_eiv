@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vendedor } from '../interfaces/vendedor.interface';
 import { environment } from 'src/environments/environment';
-import { Localidad } from '../interfaces/localidad.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +25,12 @@ export class VendedoresService {
     return this.http.post<Vendedor>(
       `${this.baseUrl}/api/vendedores/${id}/foto`,
       formData
+    );
+  }
+  putVendedor(id: number, vendedor: Vendedor) {
+    return this.http.put<Vendedor>(
+      `${this.baseUrl}/api/vendedores/${id}`,
+      vendedor
     );
   }
 }

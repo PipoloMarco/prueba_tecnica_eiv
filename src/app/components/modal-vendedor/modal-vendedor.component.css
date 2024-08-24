@@ -13,7 +13,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 1000;
   opacity: 0;
-  animation: fadeIn 0.5s forwards; /* Añade la animación aquí */
+  animation: fadeIn 0.5s forwards;
 }
 
 @keyframes fadeIn {
@@ -33,8 +33,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Oscurece el fondo con un color negro semi-transparente */
-  z-index: 999; /* Asegúrate de que esté debajo del modal */
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 .form-vendedores {
   display: flex;
@@ -125,4 +125,18 @@ img {
   font-size: 13px;
 }
 
+.btn-flex {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn-cerrar {
+  background-color: rgb(206, 28, 28);
+}
+
+.oculto {
+  display: none;
+}
 
