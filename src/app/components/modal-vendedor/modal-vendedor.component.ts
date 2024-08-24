@@ -21,7 +21,7 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   public localidades: Localidad[] = [];
-  public imgSet: any = '';
+  public imgSet: any = '../../../assets/images/profileDefault.png';
   @Output() cerrarModal = new EventEmitter<boolean>();
   @Input() crearVendedor = true;
   @Input() vendedor = {};
@@ -57,7 +57,7 @@ export class ModalVendedorComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
     // Si el formulario es invalido...
     if (this.formulario.invalid) {
       return console.log('formulario no es valido');
@@ -66,29 +66,28 @@ export class ModalVendedorComponent implements OnInit {
     if (!this.crearVendedor) {
       const { id } = this.vendedor as Vendedor;
       const vendedor = this.formulario.value as Vendedor;
+      const input = event.target as HTMLInputElement;
+      if (input.files && input.files.length > 0) {
+        const file = input.files[0];
+        console.log('Imagen seleccionada:', file);
+
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.imgSet = e.target.result;
+          this.vendedorService.postFotoVendedor(id!, file).subscribe();
+        };
+        reader.readAsDataURL(file);
+      }
+
       return this.vendedorService.putVendedor(id!, vendedor).subscribe();
     }
     //Si no cumple las anterior condiciones creo el vendedor
     const vendedorForm = this.formulario.value as Vendedor;
+    this.modalStatusFalse();
     return this.vendedorService.postVendedor(vendedorForm).subscribe();
   }
 
   uploadImage() {
     this.fileInput.nativeElement.click();
-  }
-
-  onFileSelected(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      console.log('Imagen seleccionada:', file);
-
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imgSet = e.target.result;
-        this.vendedorService.postFotoVendedor(7, file).subscribe();
-      };
-      reader.readAsDataURL(file);
-    }
   }
 }

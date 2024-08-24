@@ -14,15 +14,7 @@ export class TablaVendedoresComponent implements OnInit {
   public localidades: Localidad[] = [];
   public estadoModal = false;
   public crearVendedor = true;
-  public selectVendedor: Vendedor = {
-    id: undefined,
-    usuarioLogin: '',
-    nombre: '',
-    localidadId: 0,
-    habilitado: false,
-    fechaNacimiento: new Date(),
-    observaciones: null,
-  };
+  public selectVendedor!: Vendedor;
 
   ngOnInit(): void {
     this.vendedoresSvc

@@ -4,7 +4,7 @@
   <form
     [formGroup]="formulario"
     class="form-vendedores"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit($event)"
   >
     <div *ngIf="!crearVendedor" class="form-profile">
       <img [src]="imgSet" alt="" />
@@ -15,7 +15,7 @@
       <input
         type="file"
         #fileInput
-        (change)="onFileSelected($event)"
+        (change)="onSubmit($event)"
         style="display: none"
         accept="image/*"
       />
@@ -49,7 +49,7 @@
       <input formControlName="habilitado" type="radio" [value]="false" />
     </div>
     <div class="btn-flex">
-      <button class="btn-cerrar">Cancelar</button>
+      <button (click)="modalStatusFalse()" class="btn-cerrar">Cancelar</button>
       <button *ngIf="crearVendedor" type="submit">Guardar</button>
       <button *ngIf="!crearVendedor" type="submit">Modificar</button>
     </div>

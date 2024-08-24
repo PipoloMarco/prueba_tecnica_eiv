@@ -6,7 +6,7 @@
   transform: translate(-50%, -50%);
   width: 500px;
   height: auto;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 0.907);
   padding: 20px;
   border-radius: 10px;
   position: fixed;
