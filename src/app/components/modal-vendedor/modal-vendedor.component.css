@@ -140,3 +140,9 @@ img {
   display: none;
 }
 
+.error-message-field {
+  font-size: 15px;
+  color: rgb(206, 28, 28);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}

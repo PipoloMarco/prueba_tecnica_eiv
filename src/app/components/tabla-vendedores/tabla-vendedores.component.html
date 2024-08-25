@@ -33,7 +33,14 @@
             Modificar
           </button>
         </td>
-        <td><button class="btn-eliminar">Eliminar</button></td>
+        <td>
+          <button
+            class="btn-eliminar"
+            (click)="eliminarVendedores(vendedor.id!)"
+          >
+            Eliminar
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

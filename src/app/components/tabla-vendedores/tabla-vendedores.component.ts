@@ -15,6 +15,7 @@ export class TablaVendedoresComponent implements OnInit {
   public estadoModal = false;
   public crearVendedor = true;
   public selectVendedor!: Vendedor;
+  public eliminarOpcion = true;
 
   ngOnInit(): void {
     this.vendedoresSvc
@@ -37,5 +38,9 @@ export class TablaVendedoresComponent implements OnInit {
     this.selectVendedor = vendedor;
     this.crearVendedor = false;
     this.abrirModal();
+  }
+
+  eliminarVendedores(id: number) {
+    this.vendedoresSvc.deleteVendedor(id).subscribe();
   }
 }

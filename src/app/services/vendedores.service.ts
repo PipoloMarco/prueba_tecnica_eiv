@@ -27,10 +27,21 @@ export class VendedoresService {
       formData
     );
   }
+
+  getFotoVendedor(id: number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/api/vendedores/${id}/foto`, {
+      responseType: 'blob',
+    });
+  }
+
   putVendedor(id: number, vendedor: Vendedor) {
     return this.http.put<Vendedor>(
       `${this.baseUrl}/api/vendedores/${id}`,
       vendedor
     );
+  }
+
+  deleteVendedor(id: number) {
+    return this.http.delete(`${this.baseUrl}/api/vendedores/${id}`);
   }
 }

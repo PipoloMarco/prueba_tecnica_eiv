@@ -9,7 +9,7 @@
     <div *ngIf="!crearVendedor" class="form-profile">
       <img [src]="imgSet" alt="" />
 
-      <button class="btn-subir-imagen" (click)="uploadImage()" type="button">
+      <button class="btn-subir-imagen" (click)="uploadImage()">
         Subir Imagen
       </button>
       <input
@@ -23,14 +23,21 @@
 
     <label for="">Usuario Login</label>
     <input type="text" placeholder="usuario" formControlName="usuarioLogin" />
+    <span *ngIf="isValidField('usuarioLogin')" class="error-message-field">{{
+      "Este campo es requerido"
+    }}</span>
 
     <label for="">Nombre Completo</label>
     <input type="text" placeholder="nombre" formControlName="nombre" />
-
+    <span *ngIf="isValidField('nombre')" class="error-message-field">{{
+      "Este campo es requerido"
+    }}</span>
     <label for="">Fecha Nacimiento:</label>
     <input type="date" placeholder="fecha" formControlName="fechaNacimiento" />
-
-    <label for=""> Localidad:</label>
+    <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
+      "Este campo es requerido"
+    }}</span>
+    <label> Localidad:</label>
 
     <select formControlName="localidadId">
       <option disabled>** Localidad **</option>

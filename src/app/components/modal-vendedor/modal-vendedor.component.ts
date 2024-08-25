@@ -7,7 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { LocalidadesService } from 'src/app/services/localidades.service';
@@ -21,12 +21,12 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   public localidades: Localidad[] = [];
-  public imgSet: any = '../../../assets/images/profileDefault.png';
+  public imgSet: any;
   @Output() cerrarModal = new EventEmitter<boolean>();
   @Input() crearVendedor = true;
   @Input() vendedor = {};
 
-  formulario = this.form.group({
+  public formulario: FormGroup = this.form.group({
     usuarioLogin: ['', Validators.required],
     nombre: ['', Validators.required],
     fechaNacimiento: [new Date(), Validators.required],
@@ -51,9 +51,8 @@ export class ModalVendedorComponent implements OnInit {
       .subscribe((value) => (this.localidades = value));
     // Si crearVendedor = falso entonces traigo los datos del vendedor;
     if (!this.crearVendedor) {
-      console.log(this.vendedor);
-
       this.formulario.patchValue(this.vendedor);
+      this.traerFoto();
     }
   }
 
@@ -87,7 +86,32 @@ export class ModalVendedorComponent implements OnInit {
     return this.vendedorService.postVendedor(vendedorForm).subscribe();
   }
 
+  traerFoto() {
+    const { id } = this.vendedor as Vendedor;
+
+    this.vendedorService.getFotoVendedor(id!).subscribe((img) => {
+      // Si no tiene la imagen esta nula setea una imagen por decfecto
+      if (img === null) {
+        this.imgSet = '../../../assets/images/profileDefault.png';
+        return;
+      }
+      //Todo ver como comentar
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imgSet = reader.result as string;
+      };
+      reader.readAsDataURL(img);
+    });
+  }
+
   uploadImage() {
     this.fileInput.nativeElement.click();
+  }
+
+  isValidField(field: string): boolean | null {
+    return (
+      this.formulario.controls[field].errors &&
+      this.formulario.controls[field].touched
+    );
   }
 }
