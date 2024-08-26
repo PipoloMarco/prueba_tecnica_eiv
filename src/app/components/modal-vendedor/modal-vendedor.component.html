@@ -1,6 +1,12 @@
 <div class="backdrop" (click)="modalStatusFalse()"></div>
 
 <div class="modal slide-in-bottom">
+  <div class="form-title">
+    <h3 *ngIf="crearVendedor">Crear Vendedor</h3>
+    <h3 *ngIf="!crearVendedor">Modificar Vendedor</h3>
+    <hr class="divisor" />
+  </div>
+
   <form
     [formGroup]="formulario"
     class="form-vendedores"
@@ -9,36 +15,51 @@
     <div *ngIf="!crearVendedor" class="form-profile">
       <img [src]="imgSet" alt="" />
 
-      <button class="btn-subir-imagen" (click)="uploadImage()">
-        Subir Imagen
+      <button
+        type="button"
+        class="btn-subir-imagen"
+        (click)="clickInputImage()"
+      >
+        Subir imagen
       </button>
       <input
         type="file"
         #fileInput
-        (change)="onSubmit($event)"
+        (change)="subirImagen($event)"
         style="display: none"
         accept="image/*"
       />
     </div>
 
-    <label for="">Usuario Login</label>
-    <input type="text" placeholder="usuario" formControlName="usuarioLogin" />
+    <label>Nombre de usuario:</label>
+    <input
+      type="text"
+      placeholder="Ingrese nombre de usuario..."
+      formControlName="usuarioLogin"
+    />
+
     <span *ngIf="isValidField('usuarioLogin')" class="error-message-field">{{
       "Este campo es requerido"
     }}</span>
 
-    <label for="">Nombre Completo</label>
-    <input type="text" placeholder="nombre" formControlName="nombre" />
+    <label for="">Nombre Completo: </label>
+    <input
+      type="text"
+      placeholder="Ingrese nombre completo..."
+      formControlName="nombre"
+    />
+
     <span *ngIf="isValidField('nombre')" class="error-message-field">{{
       "Este campo es requerido"
     }}</span>
-    <label for="">Fecha Nacimiento:</label>
+    <label for="">Fecha Nacimiento: </label>
     <input type="date" placeholder="fecha" formControlName="fechaNacimiento" />
+
     <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
       "Este campo es requerido"
     }}</span>
-    <label> Localidad:</label>
 
+    <label> Localidad:</label>
     <select formControlName="localidadId">
       <option disabled>** Localidad **</option>
       <option *ngFor="let localidad of localidades" value="{{ localidad.id }}">
@@ -48,15 +69,28 @@
 
     <label for="">Observaciones:</label>
     <textarea formControlName="observaciones"></textarea>
-    <label for="">Habilitado:</label>
+
+    <label for="">Habilitado: </label>
     <div class="form-habilitado">
-      <label> Si: </label>
-      <input type="radio" [value]="true" formControlName="habilitado" />
-      <label> No: </label>
-      <input formControlName="habilitado" type="radio" [value]="false" />
+      <input
+        type="radio"
+        class="radio-input"
+        [value]="true"
+        formControlName="habilitado"
+      />
+      <p>Si</p>
+
+      <input
+        class="radio-input"
+        formControlName="habilitado"
+        type="radio"
+        [value]="false"
+      />
+      <p>No</p>
     </div>
+
     <div class="btn-flex">
-      <button (click)="modalStatusFalse()" class="btn-cerrar">Cancelar</button>
+      <button class="btn-cerrar" (click)="modalStatusFalse()">Cancelar</button>
       <button *ngIf="crearVendedor" type="submit">Guardar</button>
       <button *ngIf="!crearVendedor" type="submit">Modificar</button>
     </div>

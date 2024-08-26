@@ -1,10 +1,15 @@
 <div class="container">
   <button class="btn-agregar" (click)="agregarVendedor()">Agregar</button>
+  <div id="toast" *ngIf="estadoToast" class="toast">
+    ¡Operación realizada con éxito!
+  </div>
+
   <app-modal-vendedor
     *ngIf="estadoModal"
     (cerrarModal)="cerrarModal()"
     [crearVendedor]="crearVendedor"
     [vendedor]="selectVendedor"
+    (renderizar)="cargoVendedores()"
   ></app-modal-vendedor>
 
   <table class="table">
@@ -36,7 +41,7 @@
         <td>
           <button
             class="btn-eliminar"
-            (click)="eliminarVendedores(vendedor.id!)"
+            (click)="abrirModalEliminacion(vendedor)"
           >
             Eliminar
           </button>
@@ -45,3 +50,11 @@
     </tbody>
   </table>
 </div>
+<app-alert-modal
+  *ngIf="eliminarOpcion"
+  [vendedor]="selectVendedor"
+  (cerrarAlert)="confirmarEliminacion()"
+  (statusAlert)="confirmarEliminacion()"
+></app-alert-modal>
+
+<!-- (click)="eliminarVendedores(vendedor.id!)" -->

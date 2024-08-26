@@ -1,6 +1,6 @@
+import { Vendedor } from './../../interfaces/vendedor.interface';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { VendedoresService } from '../../services/vendedores.service';
-import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
 
 @Component({
@@ -15,20 +15,28 @@ export class TablaVendedoresComponent implements OnInit {
   public estadoModal = false;
   public crearVendedor = true;
   public selectVendedor!: Vendedor;
-  public eliminarOpcion = true;
+  public eliminarOpcion = false;
+  public estadoToast = false;
 
   ngOnInit(): void {
+    this.cargoVendedores();
+  }
+
+  cargoVendedores() {
     this.vendedoresSvc
       .getVendedores()
       .subscribe((vendedor) => (this.vendedores = vendedor));
+    console.log('cargo vendedores');
   }
 
   abrirModal() {
     this.estadoModal = true;
   }
+
   cerrarModal() {
     this.estadoModal = false;
   }
+
   agregarVendedor() {
     this.crearVendedor = true;
     this.abrirModal();
@@ -40,7 +48,20 @@ export class TablaVendedoresComponent implements OnInit {
     this.abrirModal();
   }
 
-  eliminarVendedores(id: number) {
-    this.vendedoresSvc.deleteVendedor(id).subscribe();
+  abrirModalEliminacion(vendedor: Vendedor) {
+    this.eliminarOpcion = true;
+    this.selectVendedor = vendedor;
+  }
+
+  confirmarEliminacion() {
+    this.eliminarOpcion = false;
+    this.cargoVendedores();
+  }
+
+  muestroToast() {
+    this.estadoToast = true;
+    setTimeout(() => {
+      this.estadoToast = false;
+    }, 1000);
   }
 }

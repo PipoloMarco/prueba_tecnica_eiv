@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { LocalidadesService } from 'src/app/services/localidades.service';
@@ -20,24 +21,26 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 })
 export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  public localidades: Localidad[] = [];
-  public imgSet: any;
   @Output() cerrarModal = new EventEmitter<boolean>();
+  @Output() renderizar = new EventEmitter<any>();
   @Input() crearVendedor = true;
   @Input() vendedor = {};
+  public fotoFile!: File;
+  public localidades: Localidad[] = [];
+  public imgSet: any;
 
+  public toastVariable = {
+    creacion: false,
+    mensaje: 'Mensaje',
+  };
   public formulario: FormGroup = this.form.group({
     usuarioLogin: ['', Validators.required],
     nombre: ['', Validators.required],
     fechaNacimiento: [new Date(), Validators.required],
     localidadId: [1, Validators.required],
     observaciones: [''],
-    habilitado: [false, Validators.requiredTrue],
+    habilitado: [true, Validators.required],
   });
-
-  public modalStatusFalse() {
-    this.cerrarModal.emit();
-  }
 
   constructor(
     private form: FormBuilder,
@@ -55,7 +58,13 @@ export class ModalVendedorComponent implements OnInit {
       this.traerFoto();
     }
   }
+  public rederVendedores() {
+    this.renderizar.emit();
+  }
 
+  public modalStatusFalse() {
+    this.cerrarModal.emit();
+  }
   onSubmit(event: Event) {
     // Si el formulario es invalido...
     if (this.formulario.invalid) {
@@ -63,27 +72,30 @@ export class ModalVendedorComponent implements OnInit {
     }
     // Si es el modal de modificacion entonces llamo al servicio para modificar el vendedor y retorno la funcion
     if (!this.crearVendedor) {
-      const { id } = this.vendedor as Vendedor;
-      const vendedor = this.formulario.value as Vendedor;
-      const input = event.target as HTMLInputElement;
-      if (input.files && input.files.length > 0) {
-        const file = input.files[0];
-        console.log('Imagen seleccionada:', file);
-
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.imgSet = e.target.result;
-          this.vendedorService.postFotoVendedor(id!, file).subscribe();
-        };
-        reader.readAsDataURL(file);
-      }
-
-      return this.vendedorService.putVendedor(id!, vendedor).subscribe();
+      this.modificoVendedor(event);
+      return;
     }
     //Si no cumple las anterior condiciones creo el vendedor
+    this.creoVendedor();
+  }
+
+  creoVendedor() {
     const vendedorForm = this.formulario.value as Vendedor;
-    this.modalStatusFalse();
-    return this.vendedorService.postVendedor(vendedorForm).subscribe();
+    this.vendedorService.postVendedor(vendedorForm).subscribe(() => {
+      this.modalStatusFalse();
+      this.rederVendedores();
+    });
+  }
+
+  modificoVendedor(event: Event) {
+    const { id } = this.vendedor as Vendedor;
+    const vendedor = this.formulario.value as Vendedor;
+    const foto = this.fotoFile;
+
+    this.vendedorService.putVendedor(id!, vendedor, foto).subscribe(() => {
+      this.modalStatusFalse();
+      this.rederVendedores();
+    });
   }
 
   traerFoto() {
@@ -104,10 +116,24 @@ export class ModalVendedorComponent implements OnInit {
     });
   }
 
-  uploadImage() {
+  clickInputImage() {
     this.fileInput.nativeElement.click();
   }
 
+  subirImagen(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imgSet = e.target.result;
+        this.fotoFile = file;
+        console.log(this.fotoFile);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
   isValidField(field: string): boolean | null {
     return (
       this.formulario.controls[field].errors &&

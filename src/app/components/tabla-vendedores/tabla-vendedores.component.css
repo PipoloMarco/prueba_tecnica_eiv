@@ -67,11 +67,12 @@
 }
 
 .btn-modificar {
-  background-color: #ffa500;
+  background-color: #c1c0be;
+  color: #090909;
 }
 
 .btn-modificar:hover {
-  background-color: #cc8400;
+  background-color: #c1c0beb3;
 
 }
 
@@ -80,6 +81,34 @@
 }
 
 .btn-eliminar:hover {
-  background-color: #a71d2a;
+  background-color: #090909;
 
+}
+.toast {
+
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: auto;
+  background: rgba(80, 232, 70, 0.907);
+  padding: 20px;
+  border-radius: 10px;
+  position: fixed;
+  color: #090909;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.8s forwards;
+}
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+
+  }
 }

@@ -8,12 +8,14 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalVendedorComponent } from './components/modal-vendedor/modal-vendedor.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TablaVendedoresComponent,
     ModalVendedorComponent,
+    AlertModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
