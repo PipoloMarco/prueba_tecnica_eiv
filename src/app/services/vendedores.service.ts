@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Vendedor } from '../interfaces/vendedor.interface';
 import { environment } from 'src/environments/environment';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +18,15 @@ export class VendedoresService {
       .pipe(catchError(this.handleError));
   }
   postVendedor(vendedor: Vendedor): Observable<Vendedor> {
-    return this.http.post<Vendedor>(`${this.baseUrl}/api/vendedores`, vendedor);
+    return this.http
+      .post<Vendedor>(`${this.baseUrl}/api/vendedores`, vendedor)
+      .pipe(catchError(this.handleError));
   }
 
   postFotoVendedor(id: number, file: File) {
     const formData = new FormData();
-    formData.append('file', file); // El primer argumento debe coincidir con el nombre esperado por el backend
+    formData.append('file', file);
+    // El primer argumento debe coincidir con el nombre esperado por el backend
 
     return this.http
       .post<Vendedor>(`${this.baseUrl}/api/vendedores/${id}/foto`, formData)
@@ -30,9 +34,11 @@ export class VendedoresService {
   }
 
   getFotoVendedor(id: number): Observable<Blob> {
-    return this.http.get(`${this.baseUrl}/api/vendedores/${id}/foto`, {
-      responseType: 'blob',
-    });
+    return this.http
+      .get(`${this.baseUrl}/api/vendedores/${id}/foto`, {
+        responseType: 'blob',
+      })
+      .pipe(catchError(this.handleError));
   }
 
   putVendedor(id: number, vendedor: Vendedor, foto: File) {
@@ -45,7 +51,9 @@ export class VendedoresService {
   }
 
   deleteVendedor(id: number) {
-    return this.http.delete(`${this.baseUrl}/api/vendedores/${id}`);
+    return this.http
+      .delete(`${this.baseUrl}/api/vendedores/${id}`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -59,5 +67,25 @@ export class VendedoresService {
     }
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
+  }
+  edadValida(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const fechaNacimiento = control.value;
+      if (!fechaNacimiento) {
+        return null;
+      }
+
+      const fecha = new Date(fechaNacimiento);
+      const hoy = new Date();
+      const edad = hoy.getFullYear() - fecha.getFullYear();
+      const mes = hoy.getMonth() - fecha.getMonth();
+      const dia = hoy.getDate() - fecha.getDate();
+
+      const edadValida =
+        edad > 18 || (edad === 18 && (mes > 0 || (mes === 0 && dia >= 0)));
+      const edadLimite =
+        edad < 65 || (edad === 65 && (mes < 0 || (mes === 0 && dia <= 0)));
+      return edadValida && edadLimite ? null : { edadNoValida: true };
+    };
   }
 }

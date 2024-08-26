@@ -7,8 +7,13 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
 import { Vendedor } from 'src/app/interfaces/vendedor.interface';
 import { LocalidadesService } from 'src/app/services/localidades.service';
@@ -21,6 +26,7 @@ import { VendedoresService } from 'src/app/services/vendedores.service';
 })
 export class ModalVendedorComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  @Output() operacionExitosa = new EventEmitter<void>();
   @Output() cerrarModal = new EventEmitter<boolean>();
   @Output() renderizar = new EventEmitter<any>();
   @Input() crearVendedor = true;
@@ -29,14 +35,13 @@ export class ModalVendedorComponent implements OnInit {
   public localidades: Localidad[] = [];
   public imgSet: any;
 
-  public toastVariable = {
-    creacion: false,
-    mensaje: 'Mensaje',
-  };
   public formulario: FormGroup = this.form.group({
     usuarioLogin: ['', Validators.required],
     nombre: ['', Validators.required],
-    fechaNacimiento: [new Date(), Validators.required],
+    fechaNacimiento: [
+      new Date(),
+      [Validators.required, this.vendedorService.edadValida()],
+    ],
     localidadId: [1, Validators.required],
     observaciones: [''],
     habilitado: [true, Validators.required],
@@ -49,6 +54,7 @@ export class ModalVendedorComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Traigo las localidades perticion y las muestro en el formulario
     this.localidadService
       .getLocalidades()
       .subscribe((value) => (this.localidades = value));
@@ -58,6 +64,21 @@ export class ModalVendedorComponent implements OnInit {
       this.traerFoto();
     }
   }
+
+  // Validacion del formulario
+  isValidField(field: string): boolean | null {
+    return (
+      this.formulario.controls[field].errors &&
+      this.formulario.controls[field].touched
+    );
+  }
+
+  // Toma La referencia de input file para manejarlo desde boton
+  clickInputImage() {
+    this.fileInput.nativeElement.click();
+  }
+
+  // Aplica la renderizacion del vendedor desde la tabla
   public rederVendedores() {
     this.renderizar.emit();
   }
@@ -65,28 +86,18 @@ export class ModalVendedorComponent implements OnInit {
   public modalStatusFalse() {
     this.cerrarModal.emit();
   }
-  onSubmit(event: Event) {
-    // Si el formulario es invalido...
-    if (this.formulario.invalid) {
-      return console.log('formulario no es valido');
-    }
-    // Si es el modal de modificacion entonces llamo al servicio para modificar el vendedor y retorno la funcion
-    if (!this.crearVendedor) {
-      this.modificoVendedor(event);
-      return;
-    }
-    //Si no cumple las anterior condiciones creo el vendedor
-    this.creoVendedor();
-  }
 
+  //Funcion de para crear el vendedor
   creoVendedor() {
     const vendedorForm = this.formulario.value as Vendedor;
     this.vendedorService.postVendedor(vendedorForm).subscribe(() => {
       this.modalStatusFalse();
       this.rederVendedores();
+      this.operacionExitosa.emit();
     });
   }
 
+  // Funcion para modificar el usuario
   modificoVendedor(event: Event) {
     const { id } = this.vendedor as Vendedor;
     const vendedor = this.formulario.value as Vendedor;
@@ -95,19 +106,21 @@ export class ModalVendedorComponent implements OnInit {
     this.vendedorService.putVendedor(id!, vendedor, foto).subscribe(() => {
       this.modalStatusFalse();
       this.rederVendedores();
+      this.operacionExitosa.emit();
     });
   }
 
+  // Funcion para traer las foto
   traerFoto() {
     const { id } = this.vendedor as Vendedor;
-
+    // Obtencion de la foto desde el servicio
     this.vendedorService.getFotoVendedor(id!).subscribe((img) => {
-      // Si no tiene la imagen esta nula setea una imagen por decfecto
+      // Si no tiene la imagen esta nula setea una imagen por defecto
       if (img === null) {
         this.imgSet = '../../../assets/images/profileDefault.png';
         return;
       }
-      //Todo ver como comentar
+      //Creo una incia de FileReader para
       const reader = new FileReader();
       reader.onload = () => {
         this.imgSet = reader.result as string;
@@ -116,10 +129,7 @@ export class ModalVendedorComponent implements OnInit {
     });
   }
 
-  clickInputImage() {
-    this.fileInput.nativeElement.click();
-  }
-
+  // funcion para subir imagen desde input
   subirImagen(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -134,10 +144,18 @@ export class ModalVendedorComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  isValidField(field: string): boolean | null {
-    return (
-      this.formulario.controls[field].errors &&
-      this.formulario.controls[field].touched
-    );
+
+  onSubmit(event: Event) {
+    // Si el formulario es invalido...
+    if (this.formulario.invalid) {
+      return console.log('formulario no es valido');
+    }
+    // Si es el modal de modificacion entonces llamo al servicio para modificar el vendedor y retorno la funcion
+    if (!this.crearVendedor) {
+      this.modificoVendedor(event);
+      return;
+    }
+    //Si no cumple las anterior condiciones creo el vendedor
+    this.creoVendedor();
   }
 }

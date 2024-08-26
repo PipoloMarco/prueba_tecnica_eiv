@@ -171,8 +171,8 @@ img {
 }
 
 .divisor {
-  border: none; /* Elimina el borde predeterminado */
-  height: 2px; /* Altura del divisor */
-  background-color: #ccc; /* Color del divisor */
-  margin: 20px 0; /* Espaciado superior e inferior */
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 20px 0;
 }

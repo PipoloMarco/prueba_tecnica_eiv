@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalVendedorComponent } from './components/modal-vendedor/modal-vendedor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
+import { ToastsComponent } from './components/toasts/toasts.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AlertModalComponent } from './components/alert-modal/alert-modal.compon
     TablaVendedoresComponent,
     ModalVendedorComponent,
     AlertModalComponent,
+    ToastsComponent,
   ],
   imports: [
     BrowserModule,

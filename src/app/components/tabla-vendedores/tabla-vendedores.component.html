@@ -1,8 +1,5 @@
 <div class="container">
   <button class="btn-agregar" (click)="agregarVendedor()">Agregar</button>
-  <div id="toast" *ngIf="estadoToast" class="toast">
-    ¡Operación realizada con éxito!
-  </div>
 
   <app-modal-vendedor
     *ngIf="estadoModal"
@@ -10,8 +7,9 @@
     [crearVendedor]="crearVendedor"
     [vendedor]="selectVendedor"
     (renderizar)="cargoVendedores()"
+    (operacionExitosa)="onOperacionExitosa()"
   ></app-modal-vendedor>
-
+  <app-toasts #toastComponent></app-toasts>
   <table class="table">
     <thead>
       <tr>

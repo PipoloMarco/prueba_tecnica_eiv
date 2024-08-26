@@ -34,29 +34,33 @@
     <label>Nombre de usuario:</label>
     <input
       type="text"
-      placeholder="Ingrese nombre de usuario..."
+      placeholder="Ingrese nombre de usuario*"
       formControlName="usuarioLogin"
     />
 
     <span *ngIf="isValidField('usuarioLogin')" class="error-message-field">{{
-      "Este campo es requerido"
+      "Este campo es usuario login es requerido"
     }}</span>
 
     <label for="">Nombre Completo: </label>
     <input
       type="text"
-      placeholder="Ingrese nombre completo..."
+      placeholder="Ingrese nombre completo*"
       formControlName="nombre"
     />
 
     <span *ngIf="isValidField('nombre')" class="error-message-field">{{
-      "Este campo es requerido"
+      "Este campo nombre es requerido"
     }}</span>
     <label for="">Fecha Nacimiento: </label>
-    <input type="date" placeholder="fecha" formControlName="fechaNacimiento" />
+    <input
+      type="date"
+      placeholder="Fecha de Nacimiento"
+      formControlName="fechaNacimiento"
+    />
 
     <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
-      "Este campo es requerido"
+      "Ingrese su fecha de nacimiento"
     }}</span>
 
     <label> Localidad:</label>
@@ -68,7 +72,10 @@
     </select>
 
     <label for="">Observaciones:</label>
-    <textarea formControlName="observaciones"></textarea>
+    <textarea
+      formControlName="observaciones"
+      placeholder="Ingrese su Observaciones"
+    ></textarea>
 
     <label for="">Habilitado: </label>
     <div class="form-habilitado">

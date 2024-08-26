@@ -1,7 +1,15 @@
 import { Vendedor } from './../../interfaces/vendedor.interface';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { VendedoresService } from '../../services/vendedores.service';
 import { Localidad } from 'src/app/interfaces/localidad.interface';
+import { ToastsComponent } from '../toasts/toasts.component';
 
 @Component({
   selector: 'tabla-vendedores',
@@ -16,7 +24,12 @@ export class TablaVendedoresComponent implements OnInit {
   public crearVendedor = true;
   public selectVendedor!: Vendedor;
   public eliminarOpcion = false;
-  public estadoToast = false;
+  @ViewChild('toastComponent') toastComponent!: ToastsComponent;
+
+  // Método para capturar el evento y mostrar el toast
+  onOperacionExitosa() {
+    this.toastComponent.ejecutarToast();
+  }
 
   ngOnInit(): void {
     this.cargoVendedores();
@@ -56,12 +69,5 @@ export class TablaVendedoresComponent implements OnInit {
   confirmarEliminacion() {
     this.eliminarOpcion = false;
     this.cargoVendedores();
-  }
-
-  muestroToast() {
-    this.estadoToast = true;
-    setTimeout(() => {
-      this.estadoToast = false;
-    }, 1000);
   }
 }
