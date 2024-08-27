@@ -1,8 +1,12 @@
+// Importaciones de Angular y RxJS
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { Localidad } from '../interfaces/localidad.interface';
 import { Observable } from 'rxjs';
+
+//Interfaces
+import { environment } from '../../environments/environment';
+import { Localidad } from '../interfaces/localidad.interface';
 
 @Injectable({
   providedIn: 'root',

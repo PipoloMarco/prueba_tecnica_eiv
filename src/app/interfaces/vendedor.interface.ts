@@ -5,7 +5,7 @@ export interface Vendedor {
   usuarioLogin: string;
   nombre: string;
   habilitado: boolean;
-  fechaNacimiento: Date;
+  fechaNacimiento: Date | string;
   observaciones: null | string;
   localidad?: Localidad;
   localidadId?: number;

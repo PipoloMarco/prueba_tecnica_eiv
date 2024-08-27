@@ -1,15 +1,14 @@
 <div class="container">
   <button class="btn-agregar" (click)="agregarVendedor()">Agregar</button>
-
-  <app-modal-vendedor
+  <modal-agregar-modificar-component
     *ngIf="estadoModal"
     (cerrarModal)="cerrarModal()"
     [crearVendedor]="crearVendedor"
     [vendedor]="selectVendedor"
     (renderizar)="cargoVendedores()"
     (operacionExitosa)="onOperacionExitosa()"
-  ></app-modal-vendedor>
-  <app-toasts #toastComponent></app-toasts>
+  />
+  <app-toasts #toastComponent />
   <table class="table">
     <thead>
       <tr>
@@ -54,5 +53,3 @@
   (cerrarAlert)="confirmarEliminacion()"
   (statusAlert)="confirmarEliminacion()"
 ></app-alert-modal>
-
-<!-- (click)="eliminarVendedores(vendedor.id!)" -->

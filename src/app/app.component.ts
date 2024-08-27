@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CrearVendedor } from './interfaces/crearVendedor';
 
 @Component({
   selector: 'app-root',

@@ -1,15 +1,15 @@
-import { Vendedor } from './../../interfaces/vendedor.interface';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { VendedoresService } from '../../services/vendedores.service';
-import { Localidad } from 'src/app/interfaces/localidad.interface';
+//Importaciones de Angular
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+//Componentes
 import { ToastsComponent } from '../toasts/toasts.component';
+
+//Servicios
+import { VendedoresService } from '../../services/vendedores.service';
+
+// Interfaces
+import { Vendedor } from '../../interfaces/vendedor.interface';
+import { Localidad } from '../../interfaces/localidad.interface';
 
 @Component({
   selector: 'tabla-vendedores',

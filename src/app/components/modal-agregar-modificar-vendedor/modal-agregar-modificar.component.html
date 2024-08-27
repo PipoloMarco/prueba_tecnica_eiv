@@ -57,6 +57,7 @@
       type="date"
       placeholder="Fecha de Nacimiento"
       formControlName="fechaNacimiento"
+      [ngModel]="formulario.value.fechaNacimiento | date : 'YYYY-MM-DD'"
     />
 
     <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
@@ -65,12 +66,14 @@
 
     <label> Localidad:</label>
     <select formControlName="localidadId">
-      <option disabled>** Localidad **</option>
+      <option value="" disabled selected>Ingrese su localidades</option>
       <option *ngFor="let localidad of localidades" value="{{ localidad.id }}">
         {{ localidad.localidad }}
       </option>
     </select>
-
+    <span *ngIf="isValidField('localidadId')" class="error-message-field">{{
+      "Ingrese una localidad"
+    }}</span>
     <label for="">Observaciones:</label>
     <textarea
       formControlName="observaciones"

@@ -1,9 +1,17 @@
+// Importaciones de Angular y RxJS
+
+import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { catchError, Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+
+// Interfaces
+
 import { Vendedor } from '../interfaces/vendedor.interface';
-import { environment } from 'src/environments/environment';
-import { AbstractControl, ValidatorFn } from '@angular/forms';
+
+// Configuración variable de entorno
+
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +31,7 @@ export class VendedoresService {
       .pipe(catchError(this.handleError));
   }
 
-  postFotoVendedor(id: number, file: File) {
+  postFotoVendedor(id: number, file: File): Observable<Vendedor> {
     const formData = new FormData();
     formData.append('file', file);
     // El primer argumento debe coincidir con el nombre esperado por el backend
@@ -41,7 +49,11 @@ export class VendedoresService {
       .pipe(catchError(this.handleError));
   }
 
-  putVendedor(id: number, vendedor: Vendedor, foto: File) {
+  putVendedor(
+    id: number,
+    vendedor: Vendedor,
+    foto: File
+  ): Observable<Vendedor> {
     if (foto) {
       this.postFotoVendedor(id!, foto).subscribe();
     }
@@ -50,7 +62,7 @@ export class VendedoresService {
       .pipe(catchError(this.handleError));
   }
 
-  deleteVendedor(id: number) {
+  deleteVendedor(id: number): Observable<Object> {
     return this.http
       .delete(`${this.baseUrl}/api/vendedores/${id}`)
       .pipe(catchError(this.handleError));
@@ -71,9 +83,6 @@ export class VendedoresService {
   edadValida(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const fechaNacimiento = control.value;
-      if (!fechaNacimiento) {
-        return null;
-      }
 
       const fecha = new Date(fechaNacimiento);
       const hoy = new Date();

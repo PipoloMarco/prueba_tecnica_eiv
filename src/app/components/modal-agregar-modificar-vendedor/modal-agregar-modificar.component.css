@@ -161,6 +161,7 @@ img {
 .error-message-field {
   font-size: 15px;
   color: rgb(206, 28, 28);
+  margin-top: 1px;
   animation: fadeIn 0.5s forwards;
 }
 

@@ -1,6 +1,11 @@
-import { VendedoresService } from 'src/app/services/vendedores.service';
-import { Vendedor } from './../../interfaces/vendedor.interface';
+//Importaciones de Angular
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+//Interfaces
+import { Vendedor } from './../../interfaces/vendedor.interface';
+
+// Sevicios
+import { VendedoresService } from 'src/app/services/vendedores.service';
 
 @Component({
   selector: 'app-alert-modal',
@@ -22,7 +27,6 @@ export class AlertModalComponent {
 
   cerrarAlert() {
     console.log(this.statusAlert.emit());
-
     this.statusAlert.emit();
   }
 }

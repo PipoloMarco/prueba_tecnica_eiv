@@ -1,3 +1,4 @@
+//Importaciones de Angular  y Angular Forms
 import {
   Component,
   ElementRef,
@@ -7,24 +8,24 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
-import { Localidad } from 'src/app/interfaces/localidad.interface';
-import { Vendedor } from 'src/app/interfaces/vendedor.interface';
-import { LocalidadesService } from 'src/app/services/localidades.service';
-import { VendedoresService } from 'src/app/services/vendedores.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+//Servicios
+
+import { LocalidadesService } from '../../services/localidades.service';
+import { VendedoresService } from '../../services/vendedores.service';
+
+//Interfaces
+
+import { Localidad } from '../../interfaces/localidad.interface';
+import { Vendedor } from '../../interfaces/vendedor.interface';
 
 @Component({
-  selector: 'app-modal-vendedor',
-  templateUrl: './modal-vendedor.component.html',
-  styleUrls: ['./modal-vendedor.component.css'],
+  selector: 'modal-agregar-modificar-component',
+  templateUrl: './modal-agregar-modificar.component.html',
+  styleUrls: ['./modal-agregar-modificar.component.css'],
 })
-export class ModalVendedorComponent implements OnInit {
+export class ModalAgregarModificarComponent implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
   @Output() operacionExitosa = new EventEmitter<void>();
   @Output() cerrarModal = new EventEmitter<boolean>();
@@ -42,7 +43,7 @@ export class ModalVendedorComponent implements OnInit {
       new Date(),
       [Validators.required, this.vendedorService.edadValida()],
     ],
-    localidadId: [1, Validators.required],
+    localidadId: [null, Validators.required],
     observaciones: [''],
     habilitado: [true, Validators.required],
   });
@@ -148,7 +149,8 @@ export class ModalVendedorComponent implements OnInit {
   onSubmit(event: Event) {
     // Si el formulario es invalido...
     if (this.formulario.invalid) {
-      return console.log('formulario no es valido');
+      this.formulario.markAllAsTouched();
+      return;
     }
     // Si es el modal de modificacion entonces llamo al servicio para modificar el vendedor y retorno la funcion
     if (!this.crearVendedor) {
