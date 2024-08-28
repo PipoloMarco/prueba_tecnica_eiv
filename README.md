@@ -41,7 +41,7 @@ cd tu_repositorio``
 
 ### 4 . *Ejecutar Tests: (OPCIONAL)
 
-``npm start test o test:watch``
+``npm test o test:watch``
 
 ``coverage: npm start test:coverage``
 
