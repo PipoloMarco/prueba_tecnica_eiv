@@ -15,9 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Instalando Node.js
         uses: actions/setup-node@v3
         with:
@@ -26,11 +23,8 @@ jobs:
       - name: Instalando Dependencias
         run: npm install
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Ejecutando Test Coverage
+        run: npm test -- --coverage
 
       - name: Ejecutando Tests
-        run: npm test
-
-      - name: Ejecutando Test Coverage
-        run: npm test:coverage
+        run: npm test --
