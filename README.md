@@ -31,5 +31,9 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 git clone https://github.com/PipoloMarco/prueba_tecnica_eiv.git
 cd tu_repositorio
 
-### 2. Clonar el Repositorio
+### 2. Recontrucion de paquete de Node.js
+ 
+```bash
+npm i o npm install
+
 
