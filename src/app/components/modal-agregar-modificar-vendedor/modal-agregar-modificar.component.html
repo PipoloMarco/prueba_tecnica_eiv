@@ -1,0 +1,108 @@
+<div class="backdrop" (click)="modalStatusFalse()"></div>
+
+<div class="modal">
+  <div class="form-titulo">
+    <h3 *ngIf="crearVendedor">Crear Vendedor</h3>
+    <h3 *ngIf="!crearVendedor">Modificar Vendedor</h3>
+    <hr class="divisor" />
+  </div>
+
+  <form
+    [formGroup]="formulario"
+    class="form-vendedores"
+    (ngSubmit)="onSubmit($event)"
+  >
+    <div *ngIf="!crearVendedor" class="form-profile">
+      <img class="img" [src]="imgSet" alt="{{ imgSet }}" />
+
+      <button
+        type="button"
+        class="btn-subir-imagen"
+        (click)="clickInputImage()"
+      >
+        Subir imagen
+      </button>
+      <input
+        type="file"
+        #fileInput
+        (change)="subirImagen($event)"
+        class="boton-input-desabilitado"
+        accept="image/*"
+      />
+    </div>
+
+    <label for="usuarioLogin">Nombre de usuario:</label>
+    <input
+      type="text"
+      placeholder="Ingrese nombre de usuario*"
+      formControlName="usuarioLogin"
+    />
+
+    <span *ngIf="isValidField('usuarioLogin')" class="error-message-field">{{
+      "Este campo es usuario login es requerido"
+    }}</span>
+
+    <label for="nombre">Nombre Completo: </label>
+    <input
+      type="text"
+      placeholder="Ingrese nombre completo*"
+      formControlName="nombre"
+    />
+
+    <span *ngIf="isValidField('nombre')" class="error-message-field">{{
+      "Este campo nombre es requerido"
+    }}</span>
+
+    <label for="fechaNacimiento">Fecha Nacimiento: </label>
+    <input
+      type="date"
+      placeholder="Fecha de Nacimiento"
+      formControlName="fechaNacimiento"
+    />
+
+    <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
+      "Debe de ser mayor a 18 años a 65 años"
+    }}</span>
+
+    <label for="localidadId"> Localidad:</label>
+    <select formControlName="localidadId">
+      <option value="" disabled selected>Ingrese localidades</option>
+      <option *ngFor="let localidad of localidades" value="{{ localidad.id }}">
+        {{ localidad.localidad }}
+      </option>
+    </select>
+    <span *ngIf="isValidField('localidadId')" class="error-message-field">{{
+      "Elija una localidad"
+    }}</span>
+    <label for="observaciones">Observaciones:</label>
+    <textarea
+      formControlName="observaciones"
+      placeholder="Ingrese su Observaciones"
+    ></textarea>
+
+    <label for="habilitado">Habilitado: </label>
+    <div class="form-habilitado">
+      <input
+        type="radio"
+        class="radio-input"
+        [value]="true"
+        formControlName="habilitado"
+      />
+      <p>Si</p>
+
+      <input
+        class="radio-input"
+        formControlName="habilitado"
+        type="radio"
+        [value]="false"
+      />
+      <p>No</p>
+    </div>
+
+    <div class="btn-flex">
+      <button class="btn-cerrar" (click)="modalStatusFalse()">Cancelar</button>
+      <button *ngIf="crearVendedor" type="submit">Guardar</button>
+      <button *ngIf="!crearVendedor" type="submit">Modificar</button>
+    </div>
+  </form>
+</div>

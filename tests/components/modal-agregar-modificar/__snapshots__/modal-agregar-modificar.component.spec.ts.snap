@@ -1,0 +1,711 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalAgregarModificarComponent  llamar a postVendedor con los datos correctos cuando el formulario es válido 1`] = `
+<div
+  id="root4"
+>
+  <div
+    class="backdrop"
+  />
+  <div
+    class="modal"
+  >
+    <div
+      class="form-titulo"
+    >
+      <h3>
+        Crear Vendedor
+      </h3>
+      
+      
+      <hr
+        class="divisor"
+      />
+    </div>
+    <form
+      class="form-vendedores ng-untouched ng-pristine ng-valid"
+      novalidate=""
+    >
+      
+      <label
+        for="usuarioLogin"
+      >
+        Nombre de usuario:
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="usuarioLogin"
+        placeholder="Ingrese nombre de usuario*"
+        type="text"
+      />
+      
+      <label
+        for="nombre"
+      >
+        Nombre Completo: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="nombre"
+        placeholder="Ingrese nombre completo*"
+        type="text"
+      />
+      
+      <label
+        for="fechaNacimiento"
+      >
+        Fecha Nacimiento: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="fechaNacimiento"
+        placeholder="Fecha de Nacimiento"
+        type="date"
+      />
+      
+      <label
+        for="localidadId"
+      >
+         Localidad:
+      </label>
+      <select
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="localidadId"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          Ingrese localidades
+        </option>
+        
+      </select>
+      
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="observaciones"
+        placeholder="Ingrese su Observaciones"
+      />
+      <label
+        for="habilitado"
+      >
+        Habilitado: 
+      </label>
+      <div
+        class="form-habilitado"
+      >
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          Si
+        </p>
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          No
+        </p>
+      </div>
+      <div
+        class="btn-flex"
+      >
+        <button
+          class="btn-cerrar"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+        >
+          Guardar
+        </button>
+        
+        
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ModalAgregarModificarComponent debería llamar a modificoVendedor cuando se envía un formulario válido en modo modificar 1`] = `
+<div
+  id="root5"
+>
+  <div
+    class="backdrop"
+  />
+  <div
+    class="modal"
+  >
+    <div
+      class="form-titulo"
+    >
+      
+      <h3>
+        Modificar Vendedor
+      </h3>
+      
+      <hr
+        class="divisor"
+      />
+    </div>
+    <form
+      class="form-vendedores ng-untouched ng-pristine ng-valid"
+      novalidate=""
+    >
+      <div
+        class="form-profile"
+      >
+        <img
+          alt=""
+          class="img"
+          src=""
+        />
+        <button
+          class="btn-subir-imagen"
+          type="button"
+        >
+           Subir imagen 
+        </button>
+        <input
+          accept="image/*"
+          class="boton-input-desabilitado"
+          type="file"
+        />
+      </div>
+      
+      <label
+        for="usuarioLogin"
+      >
+        Nombre de usuario:
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="usuarioLogin"
+        placeholder="Ingrese nombre de usuario*"
+        type="text"
+      />
+      
+      <label
+        for="nombre"
+      >
+        Nombre Completo: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="nombre"
+        placeholder="Ingrese nombre completo*"
+        type="text"
+      />
+      
+      <label
+        for="fechaNacimiento"
+      >
+        Fecha Nacimiento: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="fechaNacimiento"
+        placeholder="Fecha de Nacimiento"
+        type="date"
+      />
+      
+      <label
+        for="localidadId"
+      >
+         Localidad:
+      </label>
+      <select
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="localidadId"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          Ingrese localidades
+        </option>
+        
+      </select>
+      
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="observaciones"
+        placeholder="Ingrese su Observaciones"
+      />
+      <label
+        for="habilitado"
+      >
+        Habilitado: 
+      </label>
+      <div
+        class="form-habilitado"
+      >
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          Si
+        </p>
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          No
+        </p>
+      </div>
+      <div
+        class="btn-flex"
+      >
+        <button
+          class="btn-cerrar"
+        >
+          Cancelar
+        </button>
+        
+        <button
+          type="submit"
+        >
+          Modificar
+        </button>
+        
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ModalAgregarModificarComponent llamar a creoVendedor cuando se envía un formulario válido en modo crear 1`] = `
+<div
+  id="root1"
+>
+  <div
+    class="backdrop"
+  />
+  <div
+    class="modal"
+  >
+    <div
+      class="form-titulo"
+    >
+      <h3>
+        Crear Vendedor
+      </h3>
+      
+      
+      <hr
+        class="divisor"
+      />
+    </div>
+    <form
+      class="form-vendedores ng-untouched ng-pristine ng-valid"
+      novalidate=""
+    >
+      
+      <label
+        for="usuarioLogin"
+      >
+        Nombre de usuario:
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="usuarioLogin"
+        placeholder="Ingrese nombre de usuario*"
+        type="text"
+      />
+      
+      <label
+        for="nombre"
+      >
+        Nombre Completo: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="nombre"
+        placeholder="Ingrese nombre completo*"
+        type="text"
+      />
+      
+      <label
+        for="fechaNacimiento"
+      >
+        Fecha Nacimiento: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="fechaNacimiento"
+        placeholder="Fecha de Nacimiento"
+        type="date"
+      />
+      
+      <label
+        for="localidadId"
+      >
+         Localidad:
+      </label>
+      <select
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="localidadId"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          Ingrese localidades
+        </option>
+        
+      </select>
+      
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="observaciones"
+        placeholder="Ingrese su Observaciones"
+      />
+      <label
+        for="habilitado"
+      >
+        Habilitado: 
+      </label>
+      <div
+        class="form-habilitado"
+      >
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          Si
+        </p>
+        <input
+          class="radio-input ng-untouched ng-pristine ng-valid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          No
+        </p>
+      </div>
+      <div
+        class="btn-flex"
+      >
+        <button
+          class="btn-cerrar"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+        >
+          Guardar
+        </button>
+        
+        
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ModalAgregarModificarComponent marcar todos los campos como tocados si el formulario es inválido 1`] = `
+<div
+  id="root3"
+>
+  <div
+    class="backdrop"
+  />
+  <div
+    class="modal"
+  >
+    <div
+      class="form-titulo"
+    >
+      <h3>
+        Crear Vendedor
+      </h3>
+      
+      
+      <hr
+        class="divisor"
+      />
+    </div>
+    <form
+      class="form-vendedores ng-untouched ng-pristine ng-invalid"
+      novalidate=""
+    >
+      
+      <label
+        for="usuarioLogin"
+      >
+        Nombre de usuario:
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="usuarioLogin"
+        placeholder="Ingrese nombre de usuario*"
+        type="text"
+      />
+      
+      <label
+        for="nombre"
+      >
+        Nombre Completo: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="nombre"
+        placeholder="Ingrese nombre completo*"
+        type="text"
+      />
+      
+      <label
+        for="fechaNacimiento"
+      >
+        Fecha Nacimiento: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="fechaNacimiento"
+        placeholder="Fecha de Nacimiento"
+        type="date"
+      />
+      
+      <label
+        for="localidadId"
+      >
+         Localidad:
+      </label>
+      <select
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="localidadId"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          Ingrese localidades
+        </option>
+        
+      </select>
+      
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="observaciones"
+        placeholder="Ingrese su Observaciones"
+      />
+      <label
+        for="habilitado"
+      >
+        Habilitado: 
+      </label>
+      <div
+        class="form-habilitado"
+      >
+        <input
+          class="radio-input ng-untouched ng-pristine ng-invalid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          Si
+        </p>
+        <input
+          class="radio-input ng-untouched ng-pristine ng-invalid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          No
+        </p>
+      </div>
+      <div
+        class="btn-flex"
+      >
+        <button
+          class="btn-cerrar"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+        >
+          Guardar
+        </button>
+        
+        
+      </div>
+    </form>
+  </div>
+</div>
+`;
+
+exports[`ModalAgregarModificarComponent no debería llamar a creoVendedor si el formulario es inválido 1`] = `
+<div
+  id="root2"
+>
+  <div
+    class="backdrop"
+  />
+  <div
+    class="modal"
+  >
+    <div
+      class="form-titulo"
+    >
+      <h3>
+        Crear Vendedor
+      </h3>
+      
+      
+      <hr
+        class="divisor"
+      />
+    </div>
+    <form
+      class="form-vendedores ng-untouched ng-pristine ng-invalid"
+      novalidate=""
+    >
+      
+      <label
+        for="usuarioLogin"
+      >
+        Nombre de usuario:
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="usuarioLogin"
+        placeholder="Ingrese nombre de usuario*"
+        type="text"
+      />
+      
+      <label
+        for="nombre"
+      >
+        Nombre Completo: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="nombre"
+        placeholder="Ingrese nombre completo*"
+        type="text"
+      />
+      
+      <label
+        for="fechaNacimiento"
+      >
+        Fecha Nacimiento: 
+      </label>
+      <input
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="fechaNacimiento"
+        placeholder="Fecha de Nacimiento"
+        type="date"
+      />
+      
+      <label
+        for="localidadId"
+      >
+         Localidad:
+      </label>
+      <select
+        class="ng-untouched ng-pristine ng-invalid"
+        formcontrolname="localidadId"
+      >
+        <option
+          disabled=""
+          selected=""
+          value=""
+        >
+          Ingrese localidades
+        </option>
+        
+      </select>
+      
+      <label
+        for="observaciones"
+      >
+        Observaciones:
+      </label>
+      <textarea
+        class="ng-untouched ng-pristine ng-valid"
+        formcontrolname="observaciones"
+        placeholder="Ingrese su Observaciones"
+      />
+      <label
+        for="habilitado"
+      >
+        Habilitado: 
+      </label>
+      <div
+        class="form-habilitado"
+      >
+        <input
+          class="radio-input ng-untouched ng-pristine ng-invalid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          Si
+        </p>
+        <input
+          class="radio-input ng-untouched ng-pristine ng-invalid"
+          formcontrolname="habilitado"
+          type="radio"
+        />
+        <p>
+          No
+        </p>
+      </div>
+      <div
+        class="btn-flex"
+      >
+        <button
+          class="btn-cerrar"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+        >
+          Guardar
+        </button>
+        
+        
+      </div>
+    </form>
+  </div>
+</div>
+`;

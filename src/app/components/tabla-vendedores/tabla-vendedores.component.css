@@ -1,0 +1,85 @@
+.container {
+  padding: 20px;
+  background-color: #d6d6e7ba;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  color: rgb(31, 96, 152);
+  background-color: rgba(27, 81, 151, 0.1);
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: monospace;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid rgba(31, 96, 152, 0.3);
+}
+
+.table th {
+  background-color: rgba(31, 96, 152, 0.8);
+  color: white;
+}
+
+.table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.table tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.table tr:hover {
+  background-color: rgba(31, 96, 152, 0.2);
+  cursor: pointer;
+}
+
+.btn-agregar, .btn-modificar, .btn-eliminar {
+  border: none;
+  font-size: 15px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.btn-agregar {
+  background-color: #0075dc;
+}
+
+.btn-agregar:hover {
+  background-color: #005bb5;
+
+}
+
+.btn-modificar {
+  background-color: #c1c0be;
+  color: #090909;
+}
+
+.btn-modificar:hover {
+  background-color: #c1c0beb3;
+
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+}
+
+.btn-eliminar:hover {
+  background-color: #090909;
+}

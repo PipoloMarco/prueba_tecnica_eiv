@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Vendedores Services debe de traer informacion del vendedor 1`] = `
+[
+  {
+    "fechaNacimiento": "1982-05-01",
+    "habilitado": true,
+    "id": 1,
+    "localidad": {
+      "codigoPostal": "2000",
+      "id": 1,
+      "localidad": "Rosario",
+    },
+    "nombre": "Perez, Anibal ",
+    "observaciones": null,
+    "usuarioLogin": "marcoo",
+  },
+]
+`;

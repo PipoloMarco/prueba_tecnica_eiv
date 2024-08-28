@@ -1,0 +1,55 @@
+<div class="container">
+  <button class="btn-agregar" (click)="agregarVendedor()">Agregar</button>
+  <modal-agregar-modificar-component
+    *ngIf="estadoModal"
+    (cerrarModal)="cerrarModal()"
+    [crearVendedor]="crearVendedor"
+    [vendedor]="selectVendedor"
+    (renderizar)="cargoVendedores()"
+    (operacionExitosa)="onOperacionExitosa()"
+  />
+  <app-toasts #toastComponent />
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Usuario Login</th>
+        <th>Nombre</th>
+        <th>Habilitado</th>
+        <th>Fecha de nacimiento</th>
+        <th>Observaciones</th>
+        <th>Localidad</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vendedor of vendedores">
+        <td>{{ vendedor.usuarioLogin | titlecase }}</td>
+        <td>{{ vendedor.nombre | titlecase }}</td>
+        <td>{{ vendedor.habilitado ? "Sí" : "No" }}</td>
+        <td>{{ vendedor.fechaNacimiento }}</td>
+        <td>{{ vendedor.observaciones }}</td>
+        <td>{{ vendedor.localidad?.localidad }}</td>
+        <td>
+          <button class="btn-modificar" (click)="modificarVendedor(vendedor)">
+            Modificar
+          </button>
+        </td>
+        <td>
+          <button
+            class="btn-eliminar"
+            (click)="abrirModalEliminacion(vendedor)"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-alert-modal
+  *ngIf="eliminarOpcion"
+  [vendedor]="selectVendedor"
+  (cerrarAlert)="confirmarEliminacion()"
+  (statusAlert)="confirmarEliminacion()"
+></app-alert-modal>
