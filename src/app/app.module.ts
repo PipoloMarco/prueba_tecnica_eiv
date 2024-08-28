@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
 
 //Declarations
 import { AlertModalComponent } from './components/alert-modal/alert-modal.component';
@@ -16,7 +15,6 @@ import { ModalAgregarModificarComponent } from './components/modal-agregar-modif
 
 @NgModule({
   imports: [
-    AppRoutingModule,
     BrowserModule,
     CommonModule,
     CommonModule,

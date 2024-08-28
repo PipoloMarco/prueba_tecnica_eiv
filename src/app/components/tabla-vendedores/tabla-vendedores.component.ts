@@ -26,7 +26,6 @@ export class TablaVendedoresComponent implements OnInit {
   public eliminarOpcion = false;
   @ViewChild('toastComponent') toastComponent!: ToastsComponent;
 
-  // Método para capturar el evento y mostrar el toast
   onOperacionExitosa() {
     this.toastComponent.ejecutarToast();
   }
