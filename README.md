@@ -1,4 +1,4 @@
-# Proyecto de Gestión de Vendedores
+# Prueba Tecnica de Gestión de Vendedores
 
 Este proyecto es una aplicación web diseñada para la gestión de vendedores, utilizando tecnologías modernas para ofrecer una interfaz de usuario dinámica y un backend robusto.
 
