@@ -49,6 +49,7 @@
 </div>
 <app-alert-modal
   *ngIf="eliminarOpcion"
+  (operacionExitosa)="onOperacionExitosa()"
   [vendedor]="selectVendedor"
   (cerrarAlert)="confirmarEliminacion()"
   (statusAlert)="confirmarEliminacion()"

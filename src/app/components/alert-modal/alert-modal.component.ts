@@ -15,12 +15,15 @@ import { VendedoresService } from '../../services/vendedores.service';
 export class AlertModalComponent {
   @Input() vendedor!: Vendedor;
   @Output() statusAlert = new EventEmitter<boolean>();
+  @Output() operacionExitosa = new EventEmitter<void>();
+
   constructor(private vendedorService: VendedoresService) {}
 
   borrarUsuarioId() {
-    this.vendedorService
-      .deleteVendedor(this.vendedor.id!)
-      .subscribe(() => this.statusAlert.emit(true));
+    this.vendedorService.deleteVendedor(this.vendedor.id!).subscribe(() => {
+      this.statusAlert.emit(true);
+      this.operacionExitosa.emit();
+    });
   }
 
   cerrarAlert() {

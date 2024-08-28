@@ -43,7 +43,8 @@ describe('AlertModalComponent', () => {
   });
 
   afterEach(() => {
-    httpTestingController.verify(); // Verifica que no haya solicitudes HTTP pendientes
+    // Verifica que no haya solicitudes HTTP pendientes
+    httpTestingController.verify();
   });
 
   it('debería crear el componente', () => {
@@ -51,10 +52,10 @@ describe('AlertModalComponent', () => {
   });
 
   it('debería llamar a deleteVendedor y emitir statusAlert con true en la eliminación exitosa', () => {
-    // Espía el método deleteVendedor y simula una respuesta exitosa
+    // Segumiento al método deleteVendedor y simula una respuesta exitosa
     jest.spyOn(vendedorService, 'deleteVendedor').mockReturnValue(of({}));
 
-    // Espía el método emit del EventEmitter
+    // Segumiento al método emit del EventEmitter
     const emitSpy = jest.spyOn(component.statusAlert, 'emit');
 
     // Llama al método borrarUsuarioId que debería eliminar el vendedor
@@ -70,7 +71,7 @@ describe('AlertModalComponent', () => {
   });
 
   it('debería emitir statusAlert con false al cerrar la alerta', () => {
-    // Espía el método emit del EventEmitter
+    // Segumiento el método emit del EventEmitter
     const emitSpy = jest.spyOn(component.statusAlert, 'emit');
 
     // Llama al método cerrarAlert que debería emitir false
