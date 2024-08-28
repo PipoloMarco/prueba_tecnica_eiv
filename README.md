@@ -1,6 +1,6 @@
 # Proyecto de Gestión de Vendedores
 
-Este proyecto es una aplicación web para la gestión de vendedores. Utiliza una combinación de tecnologías modernas para ofrecer una interfaz de usuario dinámica y un backend robusto.
+Este proyecto es una aplicación web diseñada para la gestión de vendedores, utilizando tecnologías modernas para ofrecer una interfaz de usuario dinámica y un backend robusto.
 
 ## Tecnologías Utilizadas
 
@@ -14,7 +14,6 @@ Este proyecto es una aplicación web para la gestión de vendedores. Utiliza una
   - Jest para pruebas unitarias
   - GitHub para control de versiones
 
-
 ## Características
 
 - **Gestión de Vendedores**: Crear, editar, y eliminar vendedores.
@@ -24,16 +23,13 @@ Este proyecto es una aplicación web para la gestión de vendedores. Utiliza una
 
 ## Instalación
 
-Para ejecutar este proyecto localmente, sigue los pasos a continuación:
+Sigue estos pasos para ejecutar el proyecto localmente:
 
-- Recontrucion del proyecto
-- `npm i o npm install`
-- Inicialiar test
-- Ejectuar test `npm run test` 
-- Ejecutar el test covetage ` npm run test:coverege`
-
-### Clonar el Repositorio
+### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/tu_usuario/tu_repositorio.git
+git clone https://github.com/PipoloMarco/prueba_tecnica_eiv.git
 cd tu_repositorio
+
+### 2. Clonar el Repositorio
+
