@@ -1,3 +1,5 @@
+/* modal */
+
 
 .modal {
   top: 50%;
@@ -25,6 +27,8 @@
   }
 }
 
+
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -34,6 +38,8 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+
+ /* formulario */
 
 .form-vendedores {
   display: flex;
@@ -55,7 +61,7 @@ label {
   width: 100%;
   padding: 10px;
   font-size: 15px;
-  height: 30px;
+  height: 35px;
   border-radius:5px ;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border: none;
@@ -83,21 +89,6 @@ select {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
-button , btn-subir-imagen {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border: none;
-  background-color: #0075dc;
-  border-radius: 5px;
-  transition: all 0.3s;
-  font-size: 15px;
-  font-weight:800;
-  color: white;
-  cursor: pointer;
-}
-
 .form-habilitado {
   display: flex;
   justify-content: space-around;
@@ -114,6 +105,8 @@ button , btn-subir-imagen {
   margin-right: 8px;
 }
 
+
+
 .form-profile {
   width: 100%;
   display: flex;
@@ -122,11 +115,59 @@ button , btn-subir-imagen {
   margin-bottom: 10px;
 }
 
-img {
+ /* imagenes */
+
+.img {
   height: 100px;
   width: 100px;
   border-radius: 50%;
   object-fit: cover;
+}
+.boton-input-desabilitado {
+  display: none
+}
+
+.oculto {
+  display: none;
+}
+
+ /* mensaje de error */
+
+.error-message-field {
+  font-size: 15px;
+  color: rgb(206, 28, 28);
+  animation: fadeIn 0.5s forwards;
+}
+
+/*Formulario de titulo*/
+
+.form-titulo{
+  text-align: center;
+}
+
+.divisor {
+  border: none;
+  height: 2px;
+  background-color: #ccc;
+  margin: 20px 0;
+}
+
+
+/* botones */
+
+button , btn-subir-imagen {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: none;
+  background-color: #0075dc;
+  border-radius: 5px;
+  transition: all 0.3s;
+  font-size: 15px;
+  font-weight:800;
+  color: white;
+  cursor: pointer;
 }
 
 .btn-subir-imagen  {
@@ -150,30 +191,6 @@ img {
 }
 
 .btn-cerrar:hover {
-  background-color: rgb(9kjkj0, 89, 89);
+  background-color: rgb(90, 89, 89);
   color: #ffff;
-}
-
-.oculto {
-  display: none;
-}
-
-.error-message-field {
-  font-size: 15px;
-  color: rgb(206, 28, 28);
-  margin-top: 1px;
-  animation: fadeIn 0.5s forwards;
-}
-
-/*Formulario de titulo*/
-
-.form-title{
-  text-align: center;
-}
-
-.divisor {
-  border: none;
-  height: 2px;
-  background-color: #ccc;
-  margin: 20px 0;
 }

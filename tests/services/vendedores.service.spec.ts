@@ -41,6 +41,8 @@ describe('Vendedores Services', () => {
       expect(vendedores).toEqual(mockVendedores);
       expect(vendedores.length).toBeGreaterThan(0);
       expect(vendedores[0].nombre).toBe('Perez, Anibal ');
+      expect(vendedores).toMatchSnapshot();
+
       done();
     });
   });
@@ -60,14 +62,4 @@ describe('Vendedores Services', () => {
       done();
     });
   });
-
-  test('Debe de traer la foto', () => {});
 });
-// "jest": {
-//   "preset": "jest-preset-angular",
-//   "setupFilesAfterEnv": [
-//     "<rootDir>/setup-jest.ts"
-//   ],
-
-//   "globalSetup": "jest-preset-angular/global-setup"
-// }

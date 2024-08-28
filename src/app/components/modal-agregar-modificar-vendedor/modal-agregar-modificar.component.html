@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="modalStatusFalse()"></div>
 
-<div class="modal slide-in-bottom">
-  <div class="form-title">
+<div class="modal">
+  <div class="form-titulo">
     <h3 *ngIf="crearVendedor">Crear Vendedor</h3>
     <h3 *ngIf="!crearVendedor">Modificar Vendedor</h3>
     <hr class="divisor" />
@@ -13,7 +13,7 @@
     (ngSubmit)="onSubmit($event)"
   >
     <div *ngIf="!crearVendedor" class="form-profile">
-      <img [src]="imgSet" alt="" />
+      <img class="img" [src]="imgSet" alt="{{ imgSet }}" />
 
       <button
         type="button"
@@ -26,12 +26,12 @@
         type="file"
         #fileInput
         (change)="subirImagen($event)"
-        style="display: none"
+        class="boton-input-desabilitado"
         accept="image/*"
       />
     </div>
 
-    <label>Nombre de usuario:</label>
+    <label for="usuarioLogin">Nombre de usuario:</label>
     <input
       type="text"
       placeholder="Ingrese nombre de usuario*"
@@ -42,7 +42,7 @@
       "Este campo es usuario login es requerido"
     }}</span>
 
-    <label for="">Nombre Completo: </label>
+    <label for="nombre">Nombre Completo: </label>
     <input
       type="text"
       placeholder="Ingrese nombre completo*"
@@ -52,35 +52,35 @@
     <span *ngIf="isValidField('nombre')" class="error-message-field">{{
       "Este campo nombre es requerido"
     }}</span>
-    <label for="">Fecha Nacimiento: </label>
+
+    <label for="fechaNacimiento">Fecha Nacimiento: </label>
     <input
       type="date"
       placeholder="Fecha de Nacimiento"
       formControlName="fechaNacimiento"
-      [ngModel]="formulario.value.fechaNacimiento | date : 'YYYY-MM-DD'"
     />
 
     <span *ngIf="isValidField('fechaNacimiento')" class="error-message-field">{{
-      "Ingrese su fecha de nacimiento"
+      "Debe de ser mayor a 18 años a 65 años"
     }}</span>
 
-    <label> Localidad:</label>
+    <label for="localidadId"> Localidad:</label>
     <select formControlName="localidadId">
-      <option value="" disabled selected>Ingrese su localidades</option>
+      <option value="" disabled selected>Ingrese localidades</option>
       <option *ngFor="let localidad of localidades" value="{{ localidad.id }}">
         {{ localidad.localidad }}
       </option>
     </select>
     <span *ngIf="isValidField('localidadId')" class="error-message-field">{{
-      "Ingrese una localidad"
+      "Elija una localidad"
     }}</span>
-    <label for="">Observaciones:</label>
+    <label for="observaciones">Observaciones:</label>
     <textarea
       formControlName="observaciones"
       placeholder="Ingrese su Observaciones"
     ></textarea>
 
-    <label for="">Habilitado: </label>
+    <label for="habilitado">Habilitado: </label>
     <div class="form-habilitado">
       <input
         type="radio"

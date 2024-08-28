@@ -39,7 +39,6 @@ export class TablaVendedoresComponent implements OnInit {
     this.vendedoresSvc
       .getVendedores()
       .subscribe((vendedor) => (this.vendedores = vendedor));
-    console.log('cargo vendedores');
   }
 
   abrirModal() {

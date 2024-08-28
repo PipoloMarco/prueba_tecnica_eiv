@@ -8,7 +8,12 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 //Servicios
 
@@ -36,6 +41,11 @@ export class ModalAgregarModificarComponent implements OnInit {
   public localidades: Localidad[] = [];
   public imgSet: any;
 
+  constructor(
+    private form: FormBuilder,
+    private vendedorService: VendedoresService,
+    private localidadService: LocalidadesService
+  ) {}
   public formulario: FormGroup = this.form.group({
     usuarioLogin: ['', Validators.required],
     nombre: ['', Validators.required],
@@ -43,16 +53,10 @@ export class ModalAgregarModificarComponent implements OnInit {
       new Date(),
       [Validators.required, this.vendedorService.edadValida()],
     ],
-    localidadId: [null, Validators.required],
+    localidadId: [1, Validators.required],
     observaciones: [''],
-    habilitado: [true, Validators.required],
+    habilitado: [null, Validators.required],
   });
-
-  constructor(
-    private form: FormBuilder,
-    private vendedorService: VendedoresService,
-    private localidadService: LocalidadesService
-  ) {}
 
   ngOnInit(): void {
     // Traigo las localidades perticion y las muestro en el formulario
@@ -61,9 +65,20 @@ export class ModalAgregarModificarComponent implements OnInit {
       .subscribe((value) => (this.localidades = value));
     // Si crearVendedor = falso entonces traigo los datos del vendedor;
     if (!this.crearVendedor) {
-      this.formulario.patchValue(this.vendedor);
+      const { localidad: { id: localidadId } = {}, ...dato } = this
+        .vendedor as Vendedor;
+
+      this.formulario.patchValue({ localidadId, ...dato });
       this.traerFoto();
     }
+  }
+  // Aplica la renderizacion del vendedor desde la tabla
+  public rederVendedores() {
+    this.renderizar.emit();
+  }
+
+  public modalStatusFalse() {
+    this.cerrarModal.emit();
   }
 
   // Validacion del formulario
@@ -77,15 +92,6 @@ export class ModalAgregarModificarComponent implements OnInit {
   // Toma La referencia de input file para manejarlo desde boton
   clickInputImage() {
     this.fileInput.nativeElement.click();
-  }
-
-  // Aplica la renderizacion del vendedor desde la tabla
-  public rederVendedores() {
-    this.renderizar.emit();
-  }
-
-  public modalStatusFalse() {
-    this.cerrarModal.emit();
   }
 
   //Funcion de para crear el vendedor

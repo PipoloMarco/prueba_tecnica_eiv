@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Vendedor } from './../../interfaces/vendedor.interface';
 
 // Sevicios
-import { VendedoresService } from 'src/app/services/vendedores.service';
+import { VendedoresService } from '../../services/vendedores.service';
 
 @Component({
   selector: 'app-alert-modal',
@@ -18,15 +18,12 @@ export class AlertModalComponent {
   constructor(private vendedorService: VendedoresService) {}
 
   borrarUsuarioId() {
-    console.log(this.vendedor);
-
     this.vendedorService
       .deleteVendedor(this.vendedor.id!)
-      .subscribe(() => this.statusAlert.emit());
+      .subscribe(() => this.statusAlert.emit(true));
   }
 
   cerrarAlert() {
-    console.log(this.statusAlert.emit());
-    this.statusAlert.emit();
+    this.statusAlert.emit(false);
   }
 }

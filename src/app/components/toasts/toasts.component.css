@@ -4,7 +4,7 @@
   transform: translate(-50%, -50%);
   width: 500px;
   height: auto;
-  background: rgba(70, 200, 232, 0.688);
+  background: rgb(70, 200, 232);
   padding: 20px;
   border-radius: 10px;
   font-weight: 600;
@@ -22,6 +22,8 @@
   0% {
     opacity: 0;
   }
-
+  100% {
+    opacity: 1;
+  }
 
 }

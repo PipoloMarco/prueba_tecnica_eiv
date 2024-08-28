@@ -3,6 +3,22 @@
 <div class="container-modal-confirmacion">
   <div class="container-modal-text">
     <h3 class="title-confirmacion">¿Quieres eliminar este usuario?</h3>
+    <hr class="divisor" />
+    <p class="title-confirmacion">
+      Nombre: <span class="text-span"> {{ vendedor.nombre }}</span>
+    </p>
+    <p class="title-confirmacion">
+      Usuario Login: <span class="text-span">{{ vendedor.usuarioLogin }}</span>
+    </p>
+    <p class="title-confirmacion">
+      Fecha de nacimiento:
+      <span class="text-span">{{ vendedor.fechaNacimiento }}</span>
+    </p>
+    <p class="title-confirmacion">
+      Localidad:
+      <span class="text-span">{{ vendedor.localidad?.localidad }}</span>
+    </p>
+    <p class="title-confirmacion"></p>
   </div>
 
   <div class="btn-flex">

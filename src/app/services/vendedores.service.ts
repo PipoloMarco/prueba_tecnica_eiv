@@ -34,14 +34,13 @@ export class VendedoresService {
   postFotoVendedor(id: number, file: File): Observable<Vendedor> {
     const formData = new FormData();
     formData.append('file', file);
-    // El primer argumento debe coincidir con el nombre esperado por el backend
 
     return this.http
       .post<Vendedor>(`${this.baseUrl}/api/vendedores/${id}/foto`, formData)
       .pipe(catchError(this.handleError));
   }
 
-  getFotoVendedor(id: number): Observable<Blob> {
+  getFotoVendedor(id: number): Observable<any> {
     return this.http
       .get(`${this.baseUrl}/api/vendedores/${id}/foto`, {
         responseType: 'blob',
@@ -80,6 +79,7 @@ export class VendedoresService {
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+
   edadValida(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: boolean } | null => {
       const fechaNacimiento = control.value;
