@@ -31,7 +31,7 @@ Sigue estos pasos para ejecutar el proyecto localmente:
 git clone https://github.com/PipoloMarco/prueba_tecnica_eiv.git
 cd tu_repositorio``
 
-### 2. Recontrucion de paquete de Node:
+### 2. Recontrucion de Paquete de Node:
  
 ``npm i o npm install``
 
@@ -44,6 +44,7 @@ cd tu_repositorio``
 ``npm start test o test:watch``
 
 ``coverage: npm start test:coverage``
+
 
 #### Autor: Marco Pipolo
 #### Repositorio: https://github.com/PipoloMarco/prueba_tecnica_eiv
