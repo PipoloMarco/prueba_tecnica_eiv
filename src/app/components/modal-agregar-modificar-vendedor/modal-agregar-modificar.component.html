@@ -98,6 +98,9 @@
       />
       <p>No</p>
     </div>
+    <span *ngIf="isValidField('habilitado')" class="error-message-field">{{
+      "Deber de elijir el estado del vendedor"
+    }}</span>
 
     <div class="btn-flex">
       <button class="btn-cerrar" (click)="modalStatusFalse()">Cancelar</button>
