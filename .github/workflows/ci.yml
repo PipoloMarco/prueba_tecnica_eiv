@@ -11,20 +11,20 @@ on:
       - dev
 
 jobs:
-  build-y-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Instalando Node.js
+      - name: Checkout codigo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18"
 
-      - name: Instalando Dependencias
+      - name: Instalando dependencias
         run: npm install
 
-      - name: Ejecutando Test Coverage
+      - name: Inicializando Test Coverege
         run: npm test -- --coverage
-
-      - name: Ejecutando Tests
-        run: npm test --
