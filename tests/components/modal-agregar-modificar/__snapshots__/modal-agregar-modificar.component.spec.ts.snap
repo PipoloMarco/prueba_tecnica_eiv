@@ -117,6 +117,7 @@ exports[`ModalAgregarModificarComponent  llamar a postVendedor con los datos cor
           No
         </p>
       </div>
+      
       <div
         class="btn-flex"
       >
@@ -275,6 +276,7 @@ exports[`ModalAgregarModificarComponent debería llamar a modificoVendedor cuand
           No
         </p>
       </div>
+      
       <div
         class="btn-flex"
       >
@@ -413,6 +415,7 @@ exports[`ModalAgregarModificarComponent llamar a creoVendedor cuando se envía u
           No
         </p>
       </div>
+      
       <div
         class="btn-flex"
       >
@@ -551,6 +554,7 @@ exports[`ModalAgregarModificarComponent marcar todos los campos como tocados si 
           No
         </p>
       </div>
+      
       <div
         class="btn-flex"
       >
@@ -689,6 +693,7 @@ exports[`ModalAgregarModificarComponent no debería llamar a creoVendedor si el 
           No
         </p>
       </div>
+      
       <div
         class="btn-flex"
       >
